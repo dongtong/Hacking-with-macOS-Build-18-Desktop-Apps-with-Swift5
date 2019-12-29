@@ -10,7 +10,9 @@ import Cocoa
 
 class DetailViewController: NSViewController {
 
-    override func viewDidLoad() {
+  @IBOutlet var imageView: NSImageView!
+  
+  override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }

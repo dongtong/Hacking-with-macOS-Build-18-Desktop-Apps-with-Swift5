@@ -706,7 +706,7 @@
             <objects>
                 <splitViewController id="cGy-Sq-Syn" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem id="nj8-Pz-jgm"/>
+                        <splitViewItem holdingPriority="260" id="nj8-Pz-jgm"/>
                         <splitViewItem id="DLk-bv-gqo"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="Z9e-BV-Dqg">
@@ -731,24 +731,23 @@
             <objects>
                 <viewController id="Zbg-pm-zn4" customClass="SourceViewController" customModule="Project1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="8p1-1w-r5C">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yY3-FJ-yyY">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="N5k-Em-99S">
-                                    <rect key="frame" x="1" y="1" width="448" height="298"/>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yY3-FJ-yyY">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+                                <clipView key="contentView" drawsBackground="NO" id="N5k-Em-99S">
+                                    <rect key="frame" x="1" y="1" width="248" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="Cwi-z3-Bfh">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="Cwi-z3-Bfh">
+                                            <rect key="frame" x="0.0" y="0.0" width="248" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="445" minWidth="40" maxWidth="1000" id="guE-JN-8yu">
+                                                <tableColumn width="245" minWidth="40" maxWidth="1000" id="guE-JN-8yu">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -762,12 +761,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="AkY-Jx-Koi">
-                                                            <rect key="frame" x="1" y="1" width="445" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="245" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pNX-pv-RX9">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="445" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pNX-pv-RX9">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="245" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Vkd-P2-v2u">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -775,6 +773,11 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="pNX-pv-RX9" firstAttribute="centerY" secondItem="AkY-Jx-Koi" secondAttribute="centerY" id="HdW-ua-776"/>
+                                                                <constraint firstItem="pNX-pv-RX9" firstAttribute="centerX" secondItem="AkY-Jx-Koi" secondAttribute="centerX" id="Rzu-Uc-DGy"/>
+                                                                <constraint firstItem="pNX-pv-RX9" firstAttribute="leading" secondItem="AkY-Jx-Koi" secondAttribute="leading" constant="2" id="ajO-S2-bzK"/>
+                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="pNX-pv-RX9" id="9il-b5-8wb"/>
                                                             </connections>
@@ -791,7 +794,7 @@
                                     <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="YIr-d7-8Nr">
-                                    <rect key="frame" x="1" y="283" width="448" height="16"/>
+                                    <rect key="frame" x="1" y="283" width="248" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="hQq-AR-adf">
@@ -800,7 +803,16 @@
                                 </scroller>
                             </scrollView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="yY3-FJ-yyY" secondAttribute="trailing" id="7dU-gf-EiA"/>
+                            <constraint firstItem="yY3-FJ-yyY" firstAttribute="leading" secondItem="8p1-1w-r5C" secondAttribute="leading" id="A5w-Cn-5hQ"/>
+                            <constraint firstAttribute="bottom" secondItem="yY3-FJ-yyY" secondAttribute="bottom" id="Eq7-tK-ruJ"/>
+                            <constraint firstItem="yY3-FJ-yyY" firstAttribute="top" secondItem="8p1-1w-r5C" secondAttribute="top" id="gsI-GJ-01u"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="Cwi-z3-Bfh" id="kxD-dB-JzB"/>
+                    </connections>
                 </viewController>
                 <customObject id="AQv-xM-p6K" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -821,6 +833,9 @@
                             </imageView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="QpW-ST-N9z" id="LhF-GC-lGM"/>
+                    </connections>
                 </viewController>
                 <customObject id="vuC-k0-BY2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

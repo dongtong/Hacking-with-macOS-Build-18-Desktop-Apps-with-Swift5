@@ -10,7 +10,9 @@ import Cocoa
 
 class SourceViewController: NSViewController {
 
-    override func viewDidLoad() {
+  @IBOutlet var tableView: NSTableView!
+  
+  override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
