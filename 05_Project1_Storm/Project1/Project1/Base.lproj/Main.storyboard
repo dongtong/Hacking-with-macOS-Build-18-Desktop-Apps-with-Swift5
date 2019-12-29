@@ -826,12 +826,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpW-ST-N9z">
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="QpW-ST-N9z">
                                 <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="yWq-ge-fuP"/>
                             </imageView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="QpW-ST-N9z" secondAttribute="trailing" id="ES8-dE-cCR"/>
+                            <constraint firstItem="QpW-ST-N9z" firstAttribute="leading" secondItem="xNe-pi-M1I" secondAttribute="leading" id="L0A-jg-Uah"/>
+                            <constraint firstAttribute="bottom" secondItem="QpW-ST-N9z" secondAttribute="bottom" id="RQN-Ba-oE6"/>
+                            <constraint firstItem="QpW-ST-N9z" firstAttribute="top" secondItem="xNe-pi-M1I" secondAttribute="top" id="l5F-X3-e9q"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="QpW-ST-N9z" id="LhF-GC-lGM"/>
