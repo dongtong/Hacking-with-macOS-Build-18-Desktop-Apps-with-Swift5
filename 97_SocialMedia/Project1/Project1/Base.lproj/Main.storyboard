@@ -221,10 +221,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--Split View Controller-->
+        <!--View Controller-->
         <scene sceneID="RQN-IN-tgM">
             <objects>
-                <splitViewController id="cGy-Sq-Syn" sceneMemberID="viewController">
+                <splitViewController id="cGy-Sq-Syn" customClass="ViewController" customModule="Project1" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem holdingPriority="260" id="nj8-Pz-jgm"/>
                         <splitViewItem id="DLk-bv-gqo"/>
