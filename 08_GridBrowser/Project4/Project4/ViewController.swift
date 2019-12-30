@@ -209,5 +209,16 @@ class ViewController: NSViewController, WKNavigationDelegate, NSGestureRecognize
             return true
         }
     }
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        
+        guard webView == selectedWebView else { return }
+        
+        if let windowController = view.window?.windowController as? WindowController {
+            
+            windowController.addressEntry.stringValue = webView.url?.absoluteString ?? ""
+        }
+    }
+    
 }
 
