@@ -257,6 +257,26 @@ class ViewController: NSViewController, WKNavigationDelegate, NSGestureRecognize
             picker.delegate = self
             return picker
             
+        case NSTouchBarItem.Identifier.adjustRows:
+            let control = NSSegmentedControl(labels: ["Add Row", "RemoveRow"],
+                                             trackingMode: .momentaryAccelerator,
+                                             target: self,
+                                             action: #selector(adjustRows(_:)))
+            let customTouchBarItem = NSCustomTouchBarItem(identifier: identifier)
+            customTouchBarItem.customizationLabel = "Rows"
+            customTouchBarItem.view = control
+            return customTouchBarItem
+            
+        case NSTouchBarItem.Identifier.adjustCols:
+            let control = NSSegmentedControl(labels: ["Add Column", "Remove Column"],
+                                             trackingMode: .momentaryAccelerator,
+                                             target: self,
+                                             action: #selector(adjustColumns(_:)))
+            let customTouchBarItem = NSCustomTouchBarItem(identifier: identifier)
+            customTouchBarItem.customizationLabel = "Columns"
+            customTouchBarItem.view = control
+            return customTouchBarItem
+            
         default:
             return nil
         }
