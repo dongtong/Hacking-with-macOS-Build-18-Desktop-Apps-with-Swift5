@@ -9,7 +9,16 @@
 import Cocoa
 import WebKit
 
-class ViewController: NSViewController, WKNavigationDelegate, NSGestureRecognizerDelegate {
+extension NSTouchBarItem.Identifier {
+    static let naviagation = NSTouchBarItem.Identifier("com.hogehoge.project4.navigation")
+    static let enterAddress = NSTouchBarItem.Identifier("com.hogehoge.project4.enterAddress")
+    static let sharingPicker = NSTouchBarItem.Identifier("com.hogehoge.project4.sharingPicker")
+    static let adjustGrid = NSTouchBarItem.Identifier("com.hogehoge.project4.adjustGrid")
+    static let adjustRows = NSTouchBarItem.Identifier("com.hogehoge.project4.adjustRows")
+    static let adjustCols = NSTouchBarItem.Identifier("com.hogehoge.project4.adjustCols")
+}
+
+class ViewController: NSViewController, WKNavigationDelegate, NSGestureRecognizerDelegate, NSTouchBarDelegate, NSSharingServicePickerTouchBarItemDelegate {
     
     var rows: NSStackView!
     var selectedWebView: WKWebView!
@@ -219,6 +228,79 @@ class ViewController: NSViewController, WKNavigationDelegate, NSGestureRecognize
             
             windowController.addressEntry.stringValue = webView.url?.absoluteString ?? ""
         }
+    }
+    
+    // mark the method as only being available from macOS 10.12.2 or later
+    @available(OSX 10.12.2, *)
+    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
+        switch identifier {
+        case NSTouchBarItem.Identifier.enterAddress:
+            let button = NSButton(title: "Enter a URL", target: self, action: #selector(selectAddressEntry))
+            button.setContentHuggingPriority(NSLayoutConstraint.Priority(10), for: .horizontal)
+            let customTouchBarItem = NSCustomTouchBarItem(identifier: identifier)
+            customTouchBarItem.view = button
+            return customTouchBarItem
+        case NSTouchBarItem.Identifier.naviagation:
+            // load the back and forth images
+            let back = NSImage(named: NSImage.touchBarGoBackTemplateName)!
+            let forward = NSImage(named: NSImage.touchBarGoForwardTemplateName)!
+            // create a segmented control out of them, calling our navigationClicked() method
+            let segmentedControl = NSSegmentedControl(images: [back, forward], trackingMode: .momentary, target: self, action: #selector(navigationClicked(_:)))
+            // wrap that inside a Touch Bar item
+            let customTouchBarItem = NSCustomTouchBarItem(identifier: identifier)
+            customTouchBarItem.view = segmentedControl
+            // send it back
+            return customTouchBarItem
+            
+        case NSTouchBarItem.Identifier.sharingPicker:
+            let picker = NSSharingServicePickerTouchBarItem(identifier: identifier)
+            picker.delegate = self
+            return picker
+            
+        default:
+            return nil
+        }
+    }
+    
+//    @available(OSX 10.12.2, *)
+    override func makeTouchBar() -> NSTouchBar? {
+        
+        // enable the Customize Touch Bar menu item
+        NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true    // ユーザにTouchbarの編集を可能にする（アプリ全体の設定）
+        
+        // create a Touch Bar with a unique identifier, making `ViewController` its delegate
+        let touchBar = NSTouchBar()
+        touchBar.customizationIdentifier = NSTouchBar.CustomizationIdentifier("com.hogehoge.project4")
+        
+        touchBar.delegate = self
+        
+        // set up some meaningful defaults
+        touchBar.defaultItemIdentifiers = [.naviagation, .adjustGrid, .enterAddress, .sharingPicker]
+        
+        // make the address entry button sit in the center of the bar
+        touchBar.principalItemIdentifier = .enterAddress
+        
+        // allow the users to customize these four controls
+        touchBar.customizationAllowedItemIdentifiers = [.sharingPicker, .adjustGrid, .adjustCols, .adjustRows]
+        
+        // but don't let them take off the URL entry button
+        touchBar.customizationRequiredItemIdentifiers = [.enterAddress]
+        
+        return touchBar
+    }
+    
+    @objc func selectAddressEntry() {
+        
+        if let windowController = view.window?.windowController as? WindowController {
+            windowController.window?.makeFirstResponder(windowController.addressEntry)  // textFieldを選択状態にする
+        }
+    }
+    
+    //    @available(OSX 10.12.2, *)
+    func items(for pickerTouchBarItem: NSSharingServicePickerTouchBarItem) -> [Any] {
+        guard let webView = selectedWebView else { return [] }
+        guard let url = webView.url?.absoluteString else { return [] }
+        return [url]
     }
     
 }
