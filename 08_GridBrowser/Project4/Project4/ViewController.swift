@@ -210,6 +210,7 @@ class ViewController: NSViewController, WKNavigationDelegate, NSGestureRecognize
         }
     }
     
+    // ページを遷移する際にURL表示を更新する
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         
         guard webView == selectedWebView else { return }
