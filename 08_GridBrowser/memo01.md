@@ -34,3 +34,6 @@ rows.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
 
 ![image](https://i.imgur.com/yjFYciw.png)
 
+- 全体的に言えることだが、`delegate`を`extension`に分けていないので見通しが悪い。
+- 好みで分けたほうが見返すときに便利そうである。
+- あとTouchBarあたりの説明が口頭だけになっているので、もう一度見返すことが必要そう。
