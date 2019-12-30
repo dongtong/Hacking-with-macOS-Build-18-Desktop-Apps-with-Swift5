@@ -23,3 +23,9 @@
 rows.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
 ```
 
+- StackViewの入れ子はこういう構成
+- 説明だけじゃ正直わからないけれど、コード見ればなんとなく分かるな。
+- コード内のコメントにいくつか日本語で補足した
+
+![image](https://i.imgur.com/i1DeOmt.png)
+
