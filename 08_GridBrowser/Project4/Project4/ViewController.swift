@@ -46,10 +46,31 @@ class ViewController: NSViewController, WKNavigationDelegate, NSGestureRecognize
     
     @IBAction func urlEntered(_ sender: NSTextField) {
         
+        // bail out if we dont have a web view selected
+        guard let selected = selectedWebView else { return }
+        
+        // attemplt to convert the user's text into a URL
+        if let url = URL(string: sender.stringValue) {
+            
+            // it worked - load it!
+            selected.load(URLRequest(url: url))
+        }
     }
     
     @IBAction func navigationClicked(_ sender: NSSegmentedControl) {
         
+        // make sure we have a web view selected
+        guard let selected = selectedWebView else { return }
+        
+        if sender.selectedSegment == 0 {
+            
+            // back was tapped
+            selected.goBack()
+        } else {
+        
+            // forward was tapped
+            selected.goForward()
+        }
     }
     
     @IBAction func adjustRows(_ sender: NSSegmentedControl) {
@@ -133,7 +154,7 @@ class ViewController: NSViewController, WKNavigationDelegate, NSGestureRecognize
         webView.wantsLayer = true
         webView.load(URLRequest(url: URL(string: "https://www.apple.com")!))
         
-        // 3ways to diambiguate clicks
+        // 2ways to diambiguate clicks
 //        let recognizer = NSClickGestureRecognizer(target: self, action: #selector(webVIewClicked))
 //        recognizer.numberOfClicksRequired = 2   // ダブルクリックでフォーカスする設定
 //        webView.addGestureRecognizer(recognizer)
