@@ -29,3 +29,8 @@ rows.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
 
 ![image](https://i.imgur.com/i1DeOmt.png)
 
+- CALayer、core animationはCocoaより低層な`CGColor`を使っている
+- これは`NSColor`簡単に変換できるよ
+
+![image](https://i.imgur.com/yjFYciw.png)
+

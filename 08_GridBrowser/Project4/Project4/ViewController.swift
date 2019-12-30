@@ -9,9 +9,10 @@
 import Cocoa
 import WebKit
 
-class ViewController: NSViewController, WKNavigationDelegate {
+class ViewController: NSViewController, WKNavigationDelegate, NSGestureRecognizerDelegate {
     
     var rows: NSStackView!
+    var selectedWebView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,7 +133,55 @@ class ViewController: NSViewController, WKNavigationDelegate {
         webView.wantsLayer = true
         webView.load(URLRequest(url: URL(string: "https://www.apple.com")!))
         
+        // 3ways to diambiguate clicks
+//        let recognizer = NSClickGestureRecognizer(target: self, action: #selector(webVIewClicked))
+//        recognizer.numberOfClicksRequired = 2   // ダブルクリックでフォーカスする設定
+//        webView.addGestureRecognizer(recognizer)
+        
+        let recognizer = NSClickGestureRecognizer(target: self, action: #selector(webVIewClicked))
+        recognizer.delegate = self
+        webView.addGestureRecognizer(recognizer)
+        
+        if selectedWebView == nil {
+            
+            select(webView: webView)
+        }
+        
         return webView
+    }
+    
+    func select(webView: WKWebView) {
+        
+        selectedWebView = webView
+        selectedWebView.layer?.borderWidth = 4
+        selectedWebView.layer?.borderColor = NSColor.blue.cgColor
+    }
+    
+    @objc func webVIewClicked(recognizer: NSClickGestureRecognizer) {
+        
+        // get the web view that triggered this method
+        guard let newSelectedWebView = recognizer.view as? WKWebView else { return }
+        
+        // deselect the currently selected web view if there is one
+        if let selected = selectedWebView {
+            
+            selected.layer?.borderWidth = 0
+        }
+        
+        // select the new one
+        select(webView: newSelectedWebView)
+    }
+    
+    // 選択したWebViewが選択されたときはなにもしない
+    func gestureRecognizer(_ gestureRecognizer: NSGestureRecognizer, shouldAttemptToRecognizeWith event: NSEvent) -> Bool {
+        
+        if gestureRecognizer.view == selectedWebView {
+            
+            return false
+        } else {
+            
+            return true
+        }
     }
 }
 
