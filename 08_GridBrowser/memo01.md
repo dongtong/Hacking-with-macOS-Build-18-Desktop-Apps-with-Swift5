@@ -1,3 +1,21 @@
+## SegmentedControlのスタイル設定
+- [NSSegmentedControl\.Style](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style)
+- `separated`はSafariのように少し別れている
+
+> case separated
+> The segments in the control are displayed very close to each other but not touching. For example, Safari in macOS 10.10 and later uses this style for the previous and next page segmented control.
+
+![image](https://i.imgur.com/lnficJr.png)
+
+- 今回はくっついている`rounded`を使用する
+
+>case rounded
+The control is displayed using the rounded style.
+
+
+
+## AutoLayout
+
 - `rows.translatesAutoresizingMaskIntoConstraints = false`
     - AutoLayoutと設定がバッティングしてしまうのでOFFにする
 
