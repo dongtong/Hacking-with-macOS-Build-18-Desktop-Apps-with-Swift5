@@ -22,6 +22,21 @@ class ViewController: NSViewController {
         }
     }
 
+    @IBAction func urlEntered(_ sender: NSTextField) {
+        print("urlEntered")
+    }
+    
+    @IBAction func navigationClicked(_ sender: NSSegmentedControl) {
+         print("navigationClicked")
+    }
+    
+    @IBAction func adjustRows(_ sender: NSSegmentedControl) {
+         print("adjustRows")
+    }
+    
+    @IBAction func adjustColumns(_ sender: NSSegmentedControl) {
+         print("adjustColumns")
+    }
 
 }
 
