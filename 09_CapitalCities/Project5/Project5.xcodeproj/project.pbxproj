@@ -12,6 +12,7 @@
 		2A93845923BDDAD600F6D96C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A93845823BDDAD600F6D96C /* Assets.xcassets */; };
 		2A93845C23BDDAD600F6D96C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A93845A23BDDAD600F6D96C /* Main.storyboard */; };
 		2A93846623BDDD2900F6D96C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A93846523BDDD2900F6D96C /* MapKit.framework */; };
+		2A93846823BDF40100F6D96C /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93846723BDF40100F6D96C /* Pin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		2A93845D23BDDAD600F6D96C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A93845E23BDDAD600F6D96C /* Project5.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project5.entitlements; sourceTree = "<group>"; };
 		2A93846523BDDD2900F6D96C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2A93846723BDF40100F6D96C /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			children = (
 				2A93845423BDDAD300F6D96C /* AppDelegate.swift */,
 				2A93845623BDDAD300F6D96C /* ViewController.swift */,
+				2A93846723BDF40100F6D96C /* Pin.swift */,
 				2A93845823BDDAD600F6D96C /* Assets.xcassets */,
 				2A93845A23BDDAD600F6D96C /* Main.storyboard */,
 				2A93845D23BDDAD600F6D96C /* Info.plist */,
@@ -150,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A93846823BDF40100F6D96C /* Pin.swift in Sources */,
 				2A93845723BDDAD300F6D96C /* ViewController.swift in Sources */,
 				2A93845523BDDAD300F6D96C /* AppDelegate.swift in Sources */,
 			);
@@ -297,6 +301,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.ikeh1024.Project5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -316,6 +321,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.ikeh1024.Project5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
