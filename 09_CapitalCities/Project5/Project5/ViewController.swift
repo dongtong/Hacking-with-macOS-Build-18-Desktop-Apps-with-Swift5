@@ -40,3 +40,31 @@ class ViewController: NSViewController {
     
 }
 
+extension ViewController: MKMapViewDelegate {
+    
+    // MARK:- MKMapViewDelegate Methods
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // 1 - convert the annotation to a pin so we can reads its color
+        guard let pin = annotation as? Pin else { return nil }
+        
+        // create an identifier string that will be used to share map pins
+        let identifier = "Guess"
+        
+        // 3 - attempt to dequeue a pin from the re-use queue
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+        
+        if annotationView == nil {
+            // 4 - there was no pin to reuse, create a new one
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        } else {
+            // 5 - we got back a pin to re-use, so update its annotation to the new annotation
+            annotationView!.annotation = annotation
+        }
+        
+        // 6 - customize the pin so taht it can show a call out and has a color
+        annotationView?.canShowCallout = true
+        annotationView?.pinTintColor = pin.color
+        
+        return annotationView
+    }
+}
