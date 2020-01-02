@@ -11,6 +11,7 @@
 		2A93845723BDDAD300F6D96C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93845623BDDAD300F6D96C /* ViewController.swift */; };
 		2A93845923BDDAD600F6D96C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A93845823BDDAD600F6D96C /* Assets.xcassets */; };
 		2A93845C23BDDAD600F6D96C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A93845A23BDDAD600F6D96C /* Main.storyboard */; };
+		2A93846623BDDD2900F6D96C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A93846523BDDD2900F6D96C /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		2A93845B23BDDAD600F6D96C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A93845D23BDDAD600F6D96C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A93845E23BDDAD600F6D96C /* Project5.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project5.entitlements; sourceTree = "<group>"; };
+		2A93846523BDDD2900F6D96C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A93846623BDDD2900F6D96C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,6 +42,7 @@
 			children = (
 				2A93845323BDDAD300F6D96C /* Project5 */,
 				2A93845223BDDAD300F6D96C /* Products */,
+				2A93846423BDDD2900F6D96C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +65,14 @@
 				2A93845E23BDDAD600F6D96C /* Project5.entitlements */,
 			);
 			path = Project5;
+			sourceTree = "<group>";
+		};
+		2A93846423BDDD2900F6D96C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A93846523BDDD2900F6D96C /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,6 +107,11 @@
 				TargetAttributes = {
 					2A93845023BDDAD300F6D96C = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.Maps.Mac = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
