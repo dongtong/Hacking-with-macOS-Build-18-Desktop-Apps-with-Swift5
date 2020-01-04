@@ -106,6 +106,12 @@ class ViewController: NSViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
         
+        // NSTextFieldを幅いっぱいに広げる
+        for view in stackView.arrangedSubviews {
+            view.setContentHuggingPriority(NSLayoutConstraint.Priority(1), for: .horizontal)
+            view.setContentHuggingPriority(NSLayoutConstraint.Priority(1), for: .vertical)
+        }
+        
         // make the stack view sit directly against all four edges
         stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
