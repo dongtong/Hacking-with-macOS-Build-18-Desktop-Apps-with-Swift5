@@ -9,13 +9,14 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
 //        createVFL()
 //        createAnchors()
-        createStackView()
+//        createStackView()
+        createGridView()
     }
 
     override var representedObject: Any? {
@@ -117,6 +118,59 @@ class ViewController: NSViewController {
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         stackView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    func createGridView() {
+        // create our concise empty cell
+        let empty = NSGridCell.emptyContentView
+        
+        // create a grid of views
+        let gridView = NSGridView(views:
+            [
+                [makeView(0)],
+                [makeView(1), empty, makeView(2)],
+                [makeView(3), makeView(4), makeView(5), makeView(6)],
+                [makeView(7), empty, makeView(8)],
+                [makeView(9)]
+            ])
+        
+        // mark that we'll create our own constraints
+        gridView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(gridView)
+        
+        // pin the grid to the edge of our main view
+        gridView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        gridView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        gridView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        gridView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        // 各gridViewのサイズを指定する
+        gridView.row(at: 0).height = 32
+        gridView.row(at: 1).height = 32
+        gridView.row(at: 2).height = 32
+        gridView.row(at: 3).height = 32
+        gridView.row(at: 4).height = 32
+        gridView.column(at: 0).width = 128
+        gridView.column(at: 1).width = 128
+        gridView.column(at: 2).width = 128
+        gridView.column(at: 3).width = 128
+        
+        // ダイヤモンド状にセルを配置する
+        gridView.row(at: 0).mergeCells(in: NSRange(location: 0, length: 4))
+        gridView.row(at: 1).mergeCells(in: NSRange(location: 0, length: 2))
+        gridView.row(at: 1).mergeCells(in: NSRange(location: 2, length: 2))
+        gridView.row(at: 3).mergeCells(in: NSRange(location: 0, length: 2))
+        gridView.row(at: 3).mergeCells(in: NSRange(location: 2, length: 2))
+        gridView.row(at: 4).mergeCells(in: NSRange(location: 0, length: 4))
+        gridView.row(at: 0).yPlacement = .center
+        gridView.row(at: 1).yPlacement = .center
+        gridView.row(at: 2).yPlacement = .center
+        gridView.row(at: 3).yPlacement = .center
+        gridView.row(at: 4).yPlacement = .center
+        gridView.column(at: 0).xPlacement = .center
+        gridView.column(at: 1).xPlacement = .center
+        gridView.column(at: 2).xPlacement = .center
+        gridView.column(at: 3).xPlacement = .center
     }
 }
 

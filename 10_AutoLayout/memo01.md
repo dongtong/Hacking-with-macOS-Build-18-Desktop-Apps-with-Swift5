@@ -18,3 +18,30 @@
 ## Part3
 - StackViewの話
 - [setContentHuggingPriority\(\_:for:\)](https://developer.apple.com/documentation/appkit/nsview/1526937-setcontenthuggingpriority)
+
+## Part4
+- GridViewの話
+- 結合の辺りは下記のようなイメージ
+
+![image](https://i.imgur.com/7cyhE5p.png)
+
+![image](https://i.imgur.com/IoQfBBb.png)
+
+
+```swift
+gridView.row(at: 0).mergeCells(in: NSRange(location: 0, length: 4))
+gridView.row(at: 1).mergeCells(in: NSRange(location: 0, length: 2))
+gridView.row(at: 1).mergeCells(in: NSRange(location: 2, length: 2))
+gridView.row(at: 3).mergeCells(in: NSRange(location: 0, length: 2))
+gridView.row(at: 3).mergeCells(in: NSRange(location: 2, length: 2))
+gridView.row(at: 4).mergeCells(in: NSRange(location: 0, length: 4))
+gridView.row(at: 0).yPlacement = .center
+gridView.row(at: 1).yPlacement = .center
+gridView.row(at: 2).yPlacement = .center
+gridView.row(at: 3).yPlacement = .center
+gridView.row(at: 4).yPlacement = .center
+gridView.column(at: 0).xPlacement = .center
+gridView.column(at: 1).xPlacement = .center
+gridView.column(at: 2).xPlacement = .center
+gridView.column(at: 3).xPlacement = .center
+```
