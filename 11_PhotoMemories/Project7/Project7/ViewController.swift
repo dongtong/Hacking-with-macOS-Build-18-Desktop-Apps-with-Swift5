@@ -39,7 +39,6 @@ extension ViewController: NSCollectionViewDataSource, NSCollectionViewDelegate {
                                            for: indexPath)
         guard let pictureItem = item as? Photo else { return item }
         
-        pictureItem.view.wantsLayer = true
         pictureItem.view.layer?.backgroundColor = NSColor.red.cgColor
         
         return pictureItem
