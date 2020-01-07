@@ -13,3 +13,12 @@
 ```sh
 /Users/hirokiikeuchi/Documents/SlideMark
 ```
+
+## Part4
+## Part4
+- また変わっているところがある。
+- 適宜サンプルコードを参照する
+
+```swift
+collectionView.registerForDraggedTypes([NSPasteboard.PasteboardType(kUTTypeURL as String)])
+```
