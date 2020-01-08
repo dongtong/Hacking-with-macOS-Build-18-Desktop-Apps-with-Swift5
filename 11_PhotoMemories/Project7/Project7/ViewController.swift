@@ -194,6 +194,28 @@ extension ViewController: NSCollectionViewDataSource, NSCollectionViewDelegate {
         return photos[indexPath.item] as NSPasteboardWriting?
     }
     
+    override func keyUp(with event: NSEvent) {
+        // bail out if we don't have any selected items
+        guard collectionView.selectionIndexPaths.count > 0 else { return }
+        
+        // convert the integer to a Unicode scalar, then to a string
+        if event.charactersIgnoringModifiers == String(UnicodeScalar(NSDeleteCharacter)!) {
+            let fm = FileManager.default
+            
+            // loop over the selected items in reverse sorted order
+            for indexPath in collectionView.selectionIndexPaths.sorted().reversed() {
+                do {
+                    // move this item to the trash and remove it from the array
+                    try fm.trashItem(at: photos[indexPath.item], resultingItemURL: nil)
+                    photos.remove(at: indexPath.item)
+                } catch {
+                    print("Failed to delete \(photos[indexPath.item])")
+                }
+            }
+            
+            collectionView.animator().deleteItems(at: collectionView.selectionIndexPaths)
+        }
+    }
 }
 
 extension Array {
