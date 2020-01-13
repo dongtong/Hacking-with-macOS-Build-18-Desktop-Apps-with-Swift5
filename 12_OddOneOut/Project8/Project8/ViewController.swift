@@ -15,6 +15,7 @@ class ViewController: NSViewController {
     var gridViewButtons = [NSButton]()
     let gridSize = 10
     let gridMargin: CGFloat = 5
+    var gameOverView: GameOverView!
     
     var images = ["elephant", "giraffe", "hippo", "monkey", "panda", "parrot", "penguin", "pig", "rabbit", "snake"]
     var currentLevel = 1
@@ -161,6 +162,21 @@ class ViewController: NSViewController {
     }
     
     func gameOver() {
+        gameOverView = GameOverView()
+        gameOverView.alphaValue = 0
+        
+        gameOverView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(gameOverView)
+        
+        gameOverView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        gameOverView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        gameOverView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        gameOverView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        gameOverView.layoutSubtreeIfNeeded()
+        
+        gameOverView.startEmitting()
+        NSAnimationContext.current.duration = 1
+        gameOverView.animator().alphaValue = 1
         
     }
     
@@ -188,7 +204,8 @@ class ViewController: NSViewController {
 //    }
     
     func createLevel() {
-        if currentLevel == 9 {
+//        if currentLevel == 9 {
+        if currentLevel == 2 {
             gameOver()
         } else {
             let numberOfItems = [0, 5, 15, 25, 35, 49, 65, 81, 100]
