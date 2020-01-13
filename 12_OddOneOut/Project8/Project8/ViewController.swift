@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import GameplayKit
 
 class ViewController: NSViewController {
     
@@ -14,11 +15,14 @@ class ViewController: NSViewController {
     var gridViewButtons = [NSButton]()
     let gridSize = 10
     let gridMargin: CGFloat = 5
-
+    
+    var images = ["elephant", "giraffe", "hippo", "monkey", "panda", "parrot", "penguin", "pig", "rabbit", "snake"]
+    var currentLevel = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        createLevel()
     }
 
     override var representedObject: Any? {
@@ -72,8 +76,6 @@ class ViewController: NSViewController {
             var row = [NSButton]()
             for _ in 0 ..< gridSize {
                 let button = NSButton(frame: NSRect(x: 0, y: 0, width: 64, height: 64))
-                
-                button.image = NSImage(named: "penguin")
                 button.setButtonType(.momentaryChange)
                 button.imagePosition = .imageOnly
                 button.focusRingType = .none
@@ -106,6 +108,91 @@ class ViewController: NSViewController {
         for i in 0 ..< gridSize {
             gridView.row(at: i).height = 64
             gridView.column(at: i).width = 64
+        }
+    }
+    
+    func generateLayout(items: Int) {
+        // reset the game board
+        for button in gridViewButtons {
+            button.tag = 0
+            button.image = nil
+        }
+        
+        // randomize the buttons and animal images
+        gridViewButtons = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: gridViewButtons) as! [NSButton]
+        images = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: images) as! [String]
+        
+        // create our tow properties to place animals in pairs
+        var numUsed = 0
+        var itemCount = 1
+        
+        // create the odd animal by hand, giving it the tag 2, "correct answer
+        let firstButton = gridViewButtons[0]
+        firstButton.tag = 2
+        firstButton.image = NSImage(named: images[0])
+        
+        // now we create all the rest of the animals
+        for i in 1 ..< items {
+            // pull out the button at this location and give it the tag 1, "wrong answer"
+            let currentButton = gridViewButtons[i]
+            currentButton.tag = 1
+            
+            // set its image to be the correct animal
+            currentButton.image = NSImage(named: images[itemCount])
+            
+            // mark that we placed another animal in this pair
+            numUsed += 1
+            
+            // if we have placed two animals of this type
+            if (numUsed == 2) {
+                // reset the counter
+                numUsed = 0
+                
+                // place the next animal type
+                itemCount += 1
+            }
+            
+            // if we reached the end of the animal type, we use the same animal type
+            if (itemCount == images.count) {
+                // go back to the start -1, not 0, because we don't want to place the odd animal
+                itemCount = 1 // It's the same as initializing
+            }
+        }
+    }
+    
+    func gameOver() {
+        
+    }
+    
+//    func createLevel() {
+//        switch currentLevel {
+//        case 1:
+//            generateLayout(items: 5)
+//        case 2:
+//            generateLayout(items: 15)
+//        case 3:
+//            generateLayout(items: 25)
+//        case 4:
+//            generateLayout(items: 35)
+//        case 5:
+//            generateLayout(items: 49)
+//        case 6:
+//            generateLayout(items: 65)
+//        case 7:
+//            generateLayout(items: 81)
+//        case 8:
+//            generateLayout(items: 100)
+//        default:
+//            gameOver()
+//        }
+//    }
+    
+    func createLevel() {
+        if currentLevel == 9 {
+            gameOver()
+        } else {
+            let numberOfItems = [0, 5, 15, 25, 35, 49, 65, 81, 100]
+            generateLayout(items: numberOfItems[currentLevel])
         }
     }
 }
