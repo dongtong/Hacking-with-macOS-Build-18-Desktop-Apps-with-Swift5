@@ -80,7 +80,7 @@ class ViewController: NSViewController {
                 button.imagePosition = .imageOnly
                 button.focusRingType = .none
                 button.isBordered = false
-                // button.action = #selector(iamgeClicked)
+                button.action = #selector(imageClicked(_:))
                 
                 gridViewButtons.append(button)
                 row.append(button)
@@ -194,6 +194,29 @@ class ViewController: NSViewController {
             let numberOfItems = [0, 5, 15, 25, 35, 49, 65, 81, 100]
             generateLayout(items: numberOfItems[currentLevel])
         }
+    }
+    
+    @objc func imageClicked(_ sender: NSButton) {
+        // bail out if the user clicked an invisible button
+        guard sender.tag != 0 else { return }
+        
+        if sender.tag == 1 {
+            // they clicked the wrong animal
+            if currentLevel > 1 {
+                // take the current level down by 1 if we can
+                currentLevel -= 1
+            }
+            // create a new layout
+            createLevel()
+        } else {
+            // they clicked the correct animal
+            if currentLevel < 9 {
+                // take the current level up by 1 if we can
+                currentLevel += 1
+                createLevel()
+            }
+        }
+        
     }
 }
 
