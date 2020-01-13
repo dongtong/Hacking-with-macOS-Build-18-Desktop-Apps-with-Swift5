@@ -233,7 +233,10 @@ class ViewController: NSViewController {
                 createLevel()
             }
         }
-        
+    }
+    
+    override func mouseDown(with event: NSEvent) {
+        // don't let mouse clicks bleed ghrough
     }
 }
 

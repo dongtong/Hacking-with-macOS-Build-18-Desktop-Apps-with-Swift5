@@ -12,6 +12,7 @@
 		2A9E98A523C746CB00B050E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9E98A423C746CB00B050E4 /* Assets.xcassets */; };
 		2A9E98A823C746CB00B050E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9E98A623C746CB00B050E4 /* Main.storyboard */; };
 		2A9E98B123CC5CEB00B050E4 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E98B023CC5CEB00B050E4 /* GameOverView.swift */; };
+		2A9E98B323CC6A0D00B050E4 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E98B223CC6A0D00B050E4 /* WindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		2A9E98A923C746CB00B050E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A9E98AA23C746CB00B050E4 /* Project8.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project8.entitlements; sourceTree = "<group>"; };
 		2A9E98B023CC5CEB00B050E4 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		2A9E98B223CC6A0D00B050E4 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				2A9E98A023C746C500B050E4 /* AppDelegate.swift */,
 				2A9E98A223C746C500B050E4 /* ViewController.swift */,
+				2A9E98B223CC6A0D00B050E4 /* WindowController.swift */,
 				2A9E98A423C746CB00B050E4 /* Assets.xcassets */,
 				2A9E98A623C746CB00B050E4 /* Main.storyboard */,
 				2A9E98A923C746CB00B050E4 /* Info.plist */,
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A9E98A323C746C500B050E4 /* ViewController.swift in Sources */,
+				2A9E98B323CC6A0D00B050E4 /* WindowController.swift in Sources */,
 				2A9E98B123CC5CEB00B050E4 /* GameOverView.swift in Sources */,
 				2A9E98A123C746C500B050E4 /* AppDelegate.swift in Sources */,
 			);
