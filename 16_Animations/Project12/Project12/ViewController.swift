@@ -11,7 +11,7 @@ import Cocoa
 class ViewController: NSViewController {
 
     var imageView: NSImageView!
-    var currentAnimation = 0
+    var currentAnimation = 4
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +36,27 @@ class ViewController: NSViewController {
     }
 
     @objc func animate() {
-        
-        
+        switch currentAnimation {
+        case 0:
+            NSAnimationContext.current.duration = 2
+            imageView.animator().alphaValue = 0
+        case 1:
+            imageView.animator().alphaValue = 1
+        case 2:
+            NSAnimationContext.current.allowsImplicitAnimation = true
+            imageView.alphaValue = 0
+        case 3:
+            imageView.alphaValue = 1
+        case 4:
+            imageView.animator().frameCenterRotation = 90
+        case 5:
+            imageView.animator().frameCenterRotation = 0
+        default:
+            currentAnimation = 0
+            animate()
+            return
+        }
+        currentAnimation += 1
     }
     
 
