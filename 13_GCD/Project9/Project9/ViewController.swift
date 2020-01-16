@@ -9,7 +9,7 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +19,13 @@ class ViewController: NSViewController {
 //        runBackgroundCode3()
 //        runBackgroundCode4()
         
-        runSynchronousCode()
+//        runSynchronousCode()
+        
+//        runMultiProcessing1()
+        
+        runMultiProcessing2(useGCD: true)
+        runMultiProcessing2(useGCD: false)
+        
     }
 
     override var representedObject: Any? {
@@ -61,19 +67,57 @@ class ViewController: NSViewController {
         }
     }
     
+    // Main thread 1
+    // Background thread 1
+    // Background thread 2
+    // Main thread 2
     func runSynchronousCode() {
-        // asynchronous!
+        // asynchronous!（非同期）
         DispatchQueue.global().async {
             print("Background thread 1")
         }
         print("Main thread 1")
         
-        // synchronous!
+        // synchronous!（同期）
         DispatchQueue.global().sync {
             print("Background thread 2")
         }
         print("Main thread 2")
     }
     
+    func runMultiProcessing1() {
+        DispatchQueue.concurrentPerform(iterations: 10) {   // run 10 threads
+            print($0)
+        }
+    }
+    
+    func runMultiProcessing2(useGCD: Bool) {
+        // フィナボッチ数列計算
+        func fibonacci(of num: Int) -> Int {
+            if num < 2 {
+                return num
+            } else {
+                return fibonacci(of: num - 1) + fibonacci(of: num - 2)
+            }
+        }
+        
+        var array = Array(0 ..< 42)
+        let start = CFAbsoluteTimeGetCurrent()
+        
+        if useGCD {
+            DispatchQueue.concurrentPerform(iterations: array.count) {
+                array[$0] = fibonacci(of: $0)
+            }
+        } else {
+            for i in 0 ..< array.count {
+                array[i] = fibonacci(of: array[i])
+            }
+        }
+        let end = CFAbsoluteTimeGetCurrent() - start
+        
+        // use GCD     : Took 8.620744943618774 seconds
+        // not use GCD : Took 11.588165998458862 seconds
+        print("Took \(end) seconds")
+    }
 }
 
