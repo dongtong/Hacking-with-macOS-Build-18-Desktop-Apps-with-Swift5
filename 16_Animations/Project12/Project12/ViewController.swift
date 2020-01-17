@@ -11,7 +11,7 @@ import Cocoa
 class ViewController: NSViewController {
 
     var imageView: NSImageView!
-    var currentAnimation = 4
+    var currentAnimation = 7
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +51,21 @@ class ViewController: NSViewController {
             imageView.animator().frameCenterRotation = 90
         case 5:
             imageView.animator().frameCenterRotation = 0
+        case 6:
+            let animation = CABasicAnimation(keyPath: "opacity")
+            animation.fromValue = 1
+            animation.toValue = 0
+            imageView.layer?.add(animation, forKey: nil)
+        case 7:
+            let animation = CABasicAnimation(keyPath: "opacity")
+            animation.fromValue = 1
+            animation.toValue = 0
+            imageView.layer?.opacity = 0
+            imageView.layer?.add(animation, forKey: nil)
+        case 8:
+            imageView.animator().alphaValue = 1 // 1:不透明
+        case 9:
+            imageView.layer?.opacity = 1
         default:
             currentAnimation = 0
             animate()
