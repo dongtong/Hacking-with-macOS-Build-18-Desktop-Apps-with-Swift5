@@ -11,7 +11,7 @@ import Cocoa
 class ViewController: NSViewController {
 
     var imageView: NSImageView!
-    var currentAnimation = 7
+    var currentAnimation = 12   // for debug sentence
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +66,31 @@ class ViewController: NSViewController {
             imageView.animator().alphaValue = 1 // 1:不透明
         case 9:
             imageView.layer?.opacity = 1
+        case 10:
+            let animation = CABasicAnimation(keyPath: "transform.scale")
+            animation.fromValue = 1
+            animation.toValue = 1.1
+            animation.autoreverses = true
+            animation.repeatCount = 5
+            imageView.layer?.add(animation, forKey: nil)
+        case 11:
+            let animation = CAKeyframeAnimation(keyPath: "position.y")
+            animation.values = [0, 200, 0]
+            animation.keyTimes = [0, 0.2, 1]
+            animation.duration = 2
+            animation.isAdditive = true
+            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            imageView.layer?.add(animation, forKey: nil)
+        case 12:
+            NSAnimationContext.runAnimationGroup ({ [unowned self] ctx in
+                ctx.duration = 1
+                self.imageView.animator().isHidden = true
+                }, completionHandler: { [unowned self] in
+                    self.view.layer?.backgroundColor = NSColor.red.cgColor
+            })
+        case 13:
+            self.imageView.isHidden = false
+            self.view.layer?.backgroundColor = NSColor.clear.cgColor
         default:
             currentAnimation = 0
             animate()
